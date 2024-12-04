@@ -3,6 +3,9 @@ using System;
 
 namespace Soenneker.Utils.Strings.HammingDistance;
 
+/// <summary>
+/// A utility library for comparing strings via the Hamming Distance algorithm
+/// </summary>
 public static class HammingDistanceStringUtil
 {
     /// <summary>
