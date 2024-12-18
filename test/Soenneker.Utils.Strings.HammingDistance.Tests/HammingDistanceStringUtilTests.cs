@@ -1,6 +1,6 @@
 using Soenneker.Tests.FixturedUnit;
 using Xunit;
-using Xunit.Abstractions;
+
 using FluentAssertions;
 using System;
 
