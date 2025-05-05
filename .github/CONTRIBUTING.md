@@ -1,4 +1,4 @@
-# Contributing to Soenneker.Utils.Strings.HammingDistance
+﻿# Contributing to Soenneker.Utils.Strings.HammingDistance
 
 We're excited that you're interested in contributing!
 
