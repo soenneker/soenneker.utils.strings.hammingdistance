@@ -1,7 +1,7 @@
 using Soenneker.Tests.FixturedUnit;
 using Xunit;
 
-using FluentAssertions;
+using AwesomeAssertions;
 using System;
 
 namespace Soenneker.Utils.Strings.HammingDistance.Tests;
