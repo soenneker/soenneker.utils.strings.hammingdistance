@@ -1,15 +1,14 @@
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 using AwesomeAssertions;
 using System;
 
 namespace Soenneker.Utils.Strings.HammingDistance.Tests;
 
-[Collection("Collection")]
-public class HammingDistanceStringUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class HammingDistanceStringUtilTests : HostedUnitTest
 {
-    public HammingDistanceStringUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public HammingDistanceStringUtilTests(Host host) : base(host)
     {
     }
 
