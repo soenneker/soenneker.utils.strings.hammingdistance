@@ -4,40 +4,43 @@
 [![](https://img.shields.io/github/actions/workflow/status/soenneker/soenneker.utils.strings.hammingdistance/codeql.yml?label=CodeQL&style=for-the-badge)](https://github.com/soenneker/soenneker.utils.strings.hammingdistance/actions/workflows/codeql.yml)
 
 # ![](https://user-images.githubusercontent.com/4441470/224455560-91ed3ee7-f510-4041-a8d2-3fc093025112.png) Soenneker.Utils.Strings.HammingDistance
-### A utility library for comparing strings via the Hamming Distance algorithm
+Normalized positional similarity for equal-length strings using Hamming distance.
 
 ## Installation
 
-```
+```bash
 dotnet add package Soenneker.Utils.Strings.HammingDistance
 ```
-
-## Why Hamming Distance?
-
-Hamming Distance is a simple yet powerful metric for comparing strings or sequences of equal length. It is especially useful in scenarios where exact alignment and positional differences matter, such as:
-
-### Positional Accuracy:
-Hamming Distance identifies and quantifies differences at each specific position in two sequences.
-
-### Binary or Fixed-Length Data:
-It is ideal for comparing fixed-length strings, binary data, or encoded sequences.
-
-### Lightweight and Efficient:
-Hamming Distance has low computational overhead, making it well-suited for performance-critical applications.
-
-### Ideal for Error Detection:
-It is commonly used in error detection and correction algorithms, like detecting bit-flip errors in transmitted data.
-
----
 
 ## Usage
 
 ```csharp
+using Soenneker.Utils.Strings.HammingDistance;
+
 var text1 = "kitten";
 var text2 = "sitten";
 
-double similarityPercentage = HammingDistanceStringUtil.CalculatePercentage(text1, text2); // ~83.33
+double score = HammingDistanceStringUtil.Calculate(text1, text2);
+double percentage = HammingDistanceStringUtil.CalculatePercentage(text1, text2);
+
+// score is approximately 0.8333
+// percentage is approximately 83.33
 ```
 
-### Note:
-Hamming Distance requires strings of **equal length**. If the strings differ in length, an exception will be thrown to ensure valid comparisons.
+`Calculate` does not return the raw Hamming distance. It returns normalized similarity:
+
+```text
+1 - differing positions / string length
+```
+
+The result ranges from `0` when every position differs to `1` when the strings are identical. `CalculatePercentage` multiplies that value by 100. Two empty strings return `1` (or `100%`).
+
+## Requirements and comparison rules
+
+- Inputs must have equal length; otherwise both methods throw `ArgumentException`.
+- Comparison is case-sensitive.
+- Positions contain UTF-16 code units, not Unicode scalar values or grapheme clusters.
+- Whitespace and punctuation participate like any other character.
+- Both arguments must be non-null.
+
+The calculation is linear in the input length and allocates no comparison data structures. It is a good fit for aligned identifiers, fixed-width codes, or other sequences where a character at one position should only be compared with the character at the same position. Use edit distance instead when insertions or deletions should shift subsequent alignment.

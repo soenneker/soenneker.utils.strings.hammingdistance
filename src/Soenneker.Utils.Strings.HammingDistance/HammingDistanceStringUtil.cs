@@ -28,7 +28,8 @@ public static class HammingDistanceStringUtil
     /// </summary>
     /// <param name="s1">The first string.</param>
     /// <param name="s2">The second string.</param>
-    /// <returns>The similarity score between the two strings.</returns>
+    /// <returns>One minus the Hamming distance divided by the common string length, from 0 to 1.</returns>
+    /// <exception cref="ArgumentException">Thrown when the strings have different lengths.</exception>
     [Pure]
     public static double Calculate(string s1, string s2)
     {
