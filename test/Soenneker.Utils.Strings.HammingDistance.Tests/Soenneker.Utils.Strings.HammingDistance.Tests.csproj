@@ -25,5 +25,8 @@
     <ItemGroup>
         <ProjectReference Include="..\..\src\Soenneker.Utils.Strings.HammingDistance\Soenneker.Utils.Strings.HammingDistance.csproj" />
     </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AwesomeAssertions" Version="9.6.0" />
+    </ItemGroup>
 </Project>
 
